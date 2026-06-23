@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Результат теста{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Ваш результат</h1>
+{% if result %}
+    <div class="card">
+        <div class="card-header">
+            <h2>{{ result.title }}</h2>
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{ result.description|linebreaks }}</p>
+            <p class="text-muted">Набранные баллы: {{ total_score }}</p>
+        </div>
+    </div>
+{% else %}
+    <div class="alert alert-warning">
+        Не удалось определить результат. Возможно, тест пройден некорректно.
+    </div>
+{% endif %}
+<a href="{% url 'test' %}" class="btn btn-secondary mt-3">Пройти заново</a>
+{% endblock %}

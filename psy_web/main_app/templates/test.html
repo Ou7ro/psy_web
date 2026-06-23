@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Прохождение теста{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Психологический тест</h1>
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="mb-4">
+            <label class="form-label fw-bold">{{ field.label }}</label>
+            <div>
+                {{ field }}
+            </div>
+            {% if field.errors %}
+                <div class="text-danger">{{ field.errors }}</div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Отправить</button>
+</form>
+{% endblock %}
